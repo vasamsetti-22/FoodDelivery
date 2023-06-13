@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Prathusha.EntityFramework.Entities{
-    [Table("costomer")]
+namespace FoodDelivery.EntityFramework.Entities{
+    [Table("customer")]
     public class Customer : DbContext
     {
     [System.ComponentModel.DataAnnotations.Key]

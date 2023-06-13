@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Prathusha.EntityFramework.Entities{
+namespace FoodDelivery.EntityFramework.Entities{
     [Table("driver")]
     public class Driver : DbContext
     {

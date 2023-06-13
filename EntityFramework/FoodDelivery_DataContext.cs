@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Prathusha.EntityFramework.Entities;
-namespace Prathusha.EntityFramework{
-    public class FoodDelivery_DataContext : DbContext{
+using FoodDelivery.EntityFramework.Entities;
+namespace FoodDelivery.EntityFramework{
+    public class FoodDelivery_DataContext : DbContext {
         public FoodDelivery_DataContext(DbContextOptions<FoodDelivery_DataContext> options): base(options) { }
        
         public DbSet<Item> Items { get; set; }
