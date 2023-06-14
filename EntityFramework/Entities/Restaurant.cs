@@ -10,7 +10,7 @@ namespace FoodDelivery.EntityFramework.Entities{
     public int Id { get; internal set; }
 
     [Column("name")] 
-    public int Name { get; internal set; }
+    public string Name { get; internal set; }
     
     [Column("postalcode")] 
     public int PostalCode { get; internal set; }
