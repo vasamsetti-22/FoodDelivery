@@ -7,9 +7,9 @@ namespace FoodDelivery.EntityFramework.Entities{
     {
     [System.ComponentModel.DataAnnotations.Key]
     [Column("id")] 
-    public int Id { get; internal set; }
+    public string Id { get; internal set; }
 
     [Column("price")] 
-    public int Price { get; internal set; }
+    public double Price { get; internal set; }
 }
 }

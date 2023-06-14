@@ -27,7 +27,7 @@ namespace FoodDelivery.Controllers{
                 {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 }));
                 if (!data.Any())
                 {
@@ -51,7 +51,7 @@ namespace FoodDelivery.Controllers{
                 RestaurantModel data = new RestaurantModel() {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 };
 
                 if (data == null)
@@ -75,7 +75,7 @@ namespace FoodDelivery.Controllers{
                  Restaurant restaurantRow = new Restaurant(){
                     Id = model.id,
                     Name = model.name,
-                    PostalCode = model.postalcode
+                    PostCode = model.postcode
                 };
                  _fd_DataContext.Restaurants.Add(restaurantRow);
                  _fd_DataContext.SaveChanges();

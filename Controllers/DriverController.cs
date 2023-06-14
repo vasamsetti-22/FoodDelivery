@@ -27,7 +27,7 @@ namespace FoodDelivery.Controllers{
                 {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 }));
                 if (!data.Any())
                 {
@@ -51,7 +51,7 @@ namespace FoodDelivery.Controllers{
                 DriverModel data = new DriverModel() {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 };
 
                 if (data == null)
@@ -75,7 +75,7 @@ namespace FoodDelivery.Controllers{
                  Driver driverrRow = new Driver(){
                     Id = model.id,
                     Name = model.name,
-                    PostalCode = model.postalcode
+                    PostCode = model.postcode
                 };
                  _fd_DataContext.Drivers.Add(driverrRow);
                  _fd_DataContext.SaveChanges();

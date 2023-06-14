@@ -7,12 +7,12 @@ namespace FoodDelivery.EntityFramework.Entities{
     {
     [System.ComponentModel.DataAnnotations.Key]
     [Column("id")] 
-    public int Id { get; internal set; }
+    public string Id { get; internal set; }
 
     [Column("orderid")] 
     public string OrderId { get; internal set; }
 
     [Column("driverid")] 
-    public int DriverId { get; internal set; }
+    public string DriverId { get; internal set; }
 }
 }

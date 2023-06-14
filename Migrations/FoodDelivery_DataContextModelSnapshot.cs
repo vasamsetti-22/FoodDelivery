@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Food_delivery.Migrations
+namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(FoodDelivery_DataContext))]
     partial class FoodDelivery_DataContextModelSnapshot : ModelSnapshot
@@ -23,21 +23,19 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Customer", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("integer")
-                        .HasColumnName("postalcode");
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("postcode");
 
                     b.HasKey("Id");
 
@@ -46,15 +44,13 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Delivery", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("DriverId")
-                        .HasColumnType("integer")
+                    b.Property<string>("DriverId")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("driverid");
 
                     b.Property<string>("OrderId")
@@ -69,21 +65,19 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Driver", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("integer")
-                        .HasColumnName("postalcode");
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("postcode");
 
                     b.HasKey("Id");
 
@@ -92,24 +86,22 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Item", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<int>("Price")
-                        .HasColumnType("integer")
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision")
                         .HasColumnName("price");
 
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("integer")
+                    b.Property<string>("RestaurantId")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("restaurantid");
 
                     b.HasKey("Id");
@@ -119,15 +111,12 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Order", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Price")
-                        .HasColumnType("integer")
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision")
                         .HasColumnName("price");
 
                     b.HasKey("Id");
@@ -137,20 +126,19 @@ namespace Food_delivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.EntityFramework.Entities.Restaurant", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
+                    b.Property<string>("Id")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Name")
-                        .HasColumnType("integer")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasColumnName("name");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("integer")
-                        .HasColumnName("postalcode");
+                    b.Property<string>("PostCode")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("postcode");
 
                     b.HasKey("Id");
 
