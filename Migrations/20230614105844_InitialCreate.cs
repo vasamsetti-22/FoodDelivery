@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Food_delivery.Migrations
+namespace FoodDelivery.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -15,10 +14,9 @@ namespace Food_delivery.Migrations
                 name: "customer",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    postalcode = table.Column<int>(type: "integer", nullable: false)
+                    postcode = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,10 +27,9 @@ namespace Food_delivery.Migrations
                 name: "delivery",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    id = table.Column<string>(type: "text", nullable: false),
                     orderid = table.Column<string>(type: "text", nullable: false),
-                    driverid = table.Column<int>(type: "integer", nullable: false)
+                    driverid = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,10 +40,9 @@ namespace Food_delivery.Migrations
                 name: "driver",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    postalcode = table.Column<int>(type: "integer", nullable: false)
+                    postcode = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -57,11 +53,10 @@ namespace Food_delivery.Migrations
                 name: "item",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    id = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
-                    price = table.Column<int>(type: "integer", nullable: false),
-                    restaurantid = table.Column<int>(type: "integer", nullable: false)
+                    price = table.Column<double>(type: "double precision", nullable: false),
+                    restaurantid = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -72,9 +67,8 @@ namespace Food_delivery.Migrations
                 name: "order",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    price = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<string>(type: "text", nullable: false),
+                    price = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,10 +79,9 @@ namespace Food_delivery.Migrations
                 name: "restaurant",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<int>(type: "integer", nullable: false),
-                    postalcode = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    postcode = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

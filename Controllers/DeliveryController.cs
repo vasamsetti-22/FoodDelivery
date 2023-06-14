@@ -98,8 +98,12 @@ namespace FoodDelivery.Controllers{
             {
                 _fd_DataContext.Deliveries.Remove(delivery);
                 _fd_DataContext.SaveChanges();
-            }
                 return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
+            }
+            else
+            {
+                throw new CustomException("customer already exists");
+            }
             }
             catch (Exception ex)
             {

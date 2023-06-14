@@ -28,7 +28,7 @@ namespace FoodDelivery.Controllers{
                 {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 }));
                 if (!data.Any())
                 {
@@ -53,7 +53,7 @@ namespace FoodDelivery.Controllers{
                 CustomerModel data = new CustomerModel() {
                     id = row.Id,
                     name = row.Name,
-                    postalcode = row.PostalCode
+                    postcode = row.PostCode
                 };
 
                 if (data == null)
@@ -78,7 +78,7 @@ namespace FoodDelivery.Controllers{
                     Customer customerRow = new Customer(){
                     Id = model.id,
                     Name = model.name,
-                    PostalCode = model.postalcode
+                    PostCode = model.postcode
                     };
                     _fd_DataContext.Customers.Add(customerRow);
                     _fd_DataContext.SaveChanges();
@@ -130,7 +130,7 @@ namespace FoodDelivery.Controllers{
                 if(customerRow != null)
                 {
                     customerRow.Name = model.name;
-                    customerRow.PostalCode = model.postalcode;
+                    customerRow.PostCode = model.postcode;
                     _fd_DataContext.SaveChanges();
                     return Ok(ResponseHandler.GetAppResponse(type, model));
                 }
