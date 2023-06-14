@@ -16,7 +16,6 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
-        [Route("GetDrivers")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -42,8 +41,7 @@ namespace FoodDelivery.Controllers{
             }
         }
 
-        [HttpGet]
-        [Route("GetDriverById/{id}")]
+        [HttpGet("{id}")] 
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -67,7 +65,47 @@ namespace FoodDelivery.Controllers{
                 return BadRequest(ResponseHandler.GetExceptionResponse(ex));
             }
         }
-
+        [HttpPost]
+        public IActionResult AddDriver([FromBody] DriverModel model)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+              
+                 Driver driverrRow = new Driver(){
+                    Id = model.id,
+                    Name = model.name,
+                    PostalCode = model.postalcode
+                };
+                 _fd_DataContext.Drivers.Add(driverrRow);
+                 _fd_DataContext.SaveChanges();
+            
+                return Ok(ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+                var driver = _fd_DataContext.Drivers.Where(d => d.Id.Equals(id)).FirstOrDefault();
+            if (driver != null)
+            {
+                _fd_DataContext.Drivers.Remove(driver);
+                _fd_DataContext.SaveChanges();
+            }
+                return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
 
     }
 }

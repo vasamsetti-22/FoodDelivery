@@ -16,7 +16,6 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
-        [Route("GetRestaurants")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -42,8 +41,7 @@ namespace FoodDelivery.Controllers{
             }
         }
 
-        [HttpGet]
-        [Route("GetRestaurantById/{id}")]
+        [HttpGet("{id}")] 
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -64,6 +62,47 @@ namespace FoodDelivery.Controllers{
             }
             catch (Exception ex)
             { 
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpPost]
+        public IActionResult AddRestaurant([FromBody] RestaurantModel model)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+              
+                 Restaurant restaurantRow = new Restaurant(){
+                    Id = model.id,
+                    Name = model.name,
+                    PostalCode = model.postalcode
+                };
+                 _fd_DataContext.Restaurants.Add(restaurantRow);
+                 _fd_DataContext.SaveChanges();
+            
+                return Ok(ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+                var restaurant = _fd_DataContext.Restaurants.Where(d => d.Id.Equals(id)).FirstOrDefault();
+            if (restaurant != null)
+            {
+                _fd_DataContext.Restaurants.Remove(restaurant);
+                _fd_DataContext.SaveChanges();
+            }
+                return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ResponseHandler.GetExceptionResponse(ex));
             }
         }

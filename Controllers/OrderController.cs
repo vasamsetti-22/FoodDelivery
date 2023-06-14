@@ -16,7 +16,6 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
-        [Route("GetOrders")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -41,8 +40,7 @@ namespace FoodDelivery.Controllers{
             }
         }
 
-        [HttpGet]
-        [Route("GetOrderById/{id}")]
+        [HttpGet("{id}")] 
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -62,6 +60,46 @@ namespace FoodDelivery.Controllers{
             }
             catch (Exception ex)
             { 
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpPost]
+        public IActionResult AddOrder([FromBody] OrderModel model)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+              
+                 Order orderRow = new Order(){
+                    Id = model.id,
+                    Price = model.price
+                };
+                 _fd_DataContext.Orders.Add(orderRow);
+                 _fd_DataContext.SaveChanges();
+            
+                return Ok(ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+                var order = _fd_DataContext.Orders.Where(d => d.Id.Equals(id)).FirstOrDefault();
+            if (order != null)
+            {
+                _fd_DataContext.Orders.Remove(order);
+                _fd_DataContext.SaveChanges();
+            }
+                return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ResponseHandler.GetExceptionResponse(ex));
             }
         }

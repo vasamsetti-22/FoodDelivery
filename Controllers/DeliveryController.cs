@@ -16,7 +16,6 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
-        [Route("GetDeliveries")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -42,8 +41,7 @@ namespace FoodDelivery.Controllers{
             }
         }
 
-        [HttpGet]
-        [Route("GetDeliveryById/{id}")]
+        [HttpGet("{id}")] 
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -67,7 +65,46 @@ namespace FoodDelivery.Controllers{
                 return BadRequest(ResponseHandler.GetExceptionResponse(ex));
             }
         }
-
-
+        [HttpPost]
+        public IActionResult AddDelivery([FromBody] DeliveryModel model)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+              
+                 Delivery deliveryRow = new Delivery(){
+                    Id = model.id,
+                    OrderId = model.orderid,
+                    DriverId = model.driverid
+                };
+                 _fd_DataContext.Deliveries.Add(deliveryRow);
+                 _fd_DataContext.SaveChanges();
+            
+                return Ok(ResponseHandler.GetAppResponse(type, model));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                ResponseType type = ResponseType.Success;
+                var delivery = _fd_DataContext.Deliveries.Where(d => d.Id.Equals(id)).FirstOrDefault();
+            if (delivery != null)
+            {
+                _fd_DataContext.Deliveries.Remove(delivery);
+                _fd_DataContext.SaveChanges();
+            }
+                return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
+            }
+        }
     }
 }
