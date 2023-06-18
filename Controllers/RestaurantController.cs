@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using FoodDelivery.EntityFramework.Entities;
 using FoodDelivery.EntityFramework;
 using FoodDelivery.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodDelivery.Controllers{
     [Route("api/[controller]")]
+    [Authorize(Roles = "RestaurantOwner")]
     [ApiController]
      public class RestaurantController : ControllerBase
     {

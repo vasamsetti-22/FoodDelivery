@@ -9,4 +9,6 @@ namespace FoodDelivery.Identity.Controllers;
         public string Username { get; set; } = null!;
         [Required]
         public string Password { get; set; } = null!;
+        [Required]
+        public int RegistrationType { get; set; }
     }

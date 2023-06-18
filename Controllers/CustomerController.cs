@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FoodDelivery.Controllers{
     [Route("api/[controller]")]
+    [Authorize(Roles = "Customer")]
     [ApiController]
      public class CustomerController : ControllerBase
     {
@@ -17,7 +18,7 @@ namespace FoodDelivery.Controllers{
         }
         
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public IActionResult ListCustomers()
         {
             ResponseType type = ResponseType.Success;
@@ -44,7 +45,7 @@ namespace FoodDelivery.Controllers{
             }
         }
 
-        [HttpGet("{id}")]  
+        [HttpGet("{id}")]
         public IActionResult GetCustomer(int id)
         {
             ResponseType type = ResponseType.Success;
