@@ -45,7 +45,7 @@ namespace FoodDelivery.Identity.Services
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Email, user.Email)
-                };
+                };           
                 return claims;
             }
             catch (Exception e)

@@ -6,6 +6,7 @@ using System.Text;
 using FoodDelivery.Identity;
 using Microsoft.AspNetCore.Identity;
 using FoodDelivery.Identity.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<IdentityContext>();
@@ -37,8 +38,8 @@ builder.Services
         };
     });
 
-builder.Services
-    .AddIdentityCore<IdentityUser>(options =>
+
+builder.Services.AddIdentityCore<IdentityUser>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
         options.User.RequireUniqueEmail = true;
@@ -48,8 +49,10 @@ builder.Services
         options.Password.RequireUppercase = false;
         options.Password.RequireLowercase = false;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IdentityContext>();
 
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

@@ -11,24 +11,47 @@ public class AuthController : ControllerBase
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IdentityContext _context;
     private readonly TokenService _tokenService;
-    public AuthController(UserManager<IdentityUser> userManager, IdentityContext context, TokenService tokenService)
+    private readonly RoleManager<IdentityRole> _roleManager;  
+    public AuthController(UserManager<IdentityUser> userManager,  RoleManager<IdentityRole> roleManager, IdentityContext context, TokenService tokenService)
     {
         _userManager = userManager;
         _context = context;
         _tokenService = tokenService;
+        _roleManager = roleManager;
     }
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register(RegistrationRequest request)
     {
+        IdentityResult roleResult;
+
+        // foreach (var roleName in  Enum.GetValues(typeof(RegistrationType)))
+        // {
+        //     var roleExist = await _roleManager.RoleExistsAsync(roleName.ToString());
+        //     if (!roleExist)
+        //     {
+        //         roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName.ToString()));
+        //     }
+        // }
+        
+        string role = ((RegistrationType)request.RegistrationType).ToString();
+        
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+        var defaultrole = _roleManager.FindByNameAsync(role).Result;
+        if (defaultrole == null)  
+        { 
+            return BadRequest(ModelState);
+        } 
+        var user = new IdentityUser { UserName = request.Email, Email = request.Email };  
         var result = await _userManager.CreateAsync(
-            new IdentityUser { UserName = request.Username, Email = request.Email},
+            user,
             request.Password
         );
+        IdentityResult roleresult = await  _userManager.AddToRoleAsync(user, defaultrole.Name);
+
         if (result.Succeeded)
         {
             request.Password = "";
@@ -48,7 +71,7 @@ public class AuthController : ControllerBase
             return BadRequest(ModelState);
         }
 
-var managedUser = await _userManager.FindByEmailAsync(request.Email);
+        var managedUser = await _userManager.FindByEmailAsync(request.Email);
         if (managedUser == null)
         {
             return BadRequest("Bad credentials");
@@ -69,5 +92,9 @@ var managedUser = await _userManager.FindByEmailAsync(request.Email);
             Email = userInDb.Email,
             Token = accessToken,
         });
+    }
+
+    private async Task createRolesAsync(){
+
     }
 }

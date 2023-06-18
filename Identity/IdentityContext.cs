@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Identity;
-public class IdentityContext : IdentityUserContext<IdentityUser>
+public class IdentityContext : IdentityDbContext
 {
     public IdentityContext (DbContextOptions<IdentityContext> options)
         : base(options)
