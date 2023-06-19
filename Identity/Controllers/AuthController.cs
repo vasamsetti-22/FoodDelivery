@@ -84,7 +84,8 @@ public class AuthController : ControllerBase
         var userInDb = _context.Users.FirstOrDefault(u => u.Email == request.Email);
         if (userInDb is null)
             return Unauthorized();
-        var accessToken = _tokenService.CreateToken(userInDb);
+        var roles = await _userManager.GetRolesAsync(managedUser);
+        var accessToken = _tokenService.CreateToken(userInDb, roles);
         await _context.SaveChangesAsync();
         return Ok(new AuthResponse
         {

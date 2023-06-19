@@ -52,8 +52,12 @@ builder.Services.AddIdentityCore<IdentityUser>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IdentityContext>();
 
-builder.Services.AddAuthorization();
+// builder.Services.AddAuthorization(options =>
+// {
+//    options.AddPolicy("Customer", policy => policy.RequireClaim("Customer"));
+// });
 
+builder.Services.AddAuthorization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

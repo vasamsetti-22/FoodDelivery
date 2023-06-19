@@ -10,11 +10,11 @@ namespace FoodDelivery.Identity.Services
     public class TokenService
     {
         private const int ExpirationMinutes = 5;
-        public string CreateToken(IdentityUser user)
+        public string CreateToken(IdentityUser user, IList<String> roles)
         {
             var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);
             var token = CreateJwtToken(
-                CreateClaims(user),
+                CreateClaims(user, roles),
                 CreateSigningCredentials(),
                 expiration
             );
@@ -33,7 +33,7 @@ namespace FoodDelivery.Identity.Services
             );
             }
 
-        private List<Claim> CreateClaims(IdentityUser user)
+        private List<Claim> CreateClaims(IdentityUser user, IList<String> roles)
         {
             try
             {
@@ -44,8 +44,13 @@ namespace FoodDelivery.Identity.Services
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString(CultureInfo.InvariantCulture)),
                     new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.Email, user.Email)
-                };           
+                    new Claim(ClaimTypes.Email, user.Email),
+                    
+                };      
+                foreach(var role in roles) 
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
                 return claims;
             }
             catch (Exception e)
