@@ -4,5 +4,6 @@ namespace  FoodDelivery.Models
     {
         public string id { get; set; }
         public double price { get; set; }
+        public string customerid { get; set; }
     }
 }

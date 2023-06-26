@@ -9,7 +9,7 @@ namespace FoodDelivery.Identity.Services
 {
     public class TokenService
     {
-        private const int ExpirationMinutes = 5;
+        private const int ExpirationMinutes = 60;
         public string CreateToken(IdentityUser user, IList<String> roles)
         {
             var expiration = DateTime.UtcNow.AddMinutes(ExpirationMinutes);

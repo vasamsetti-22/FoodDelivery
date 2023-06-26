@@ -11,5 +11,7 @@ namespace FoodDelivery.EntityFramework.Entities{
 
     [Column("price")] 
     public double Price { get; internal set; }
+    [Column("customerid")] 
+    public double CustomerId { get; internal set; }
 }
 }
