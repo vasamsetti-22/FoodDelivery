@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using FoodDelivery.EntityFramework.Entities;
 using FoodDelivery.EntityFramework;
 using FoodDelivery.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodDelivery.Controllers{
     [Route("api/[controller]")]
@@ -16,6 +17,8 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
+        [Authorize(Roles = "RestaurantOwner")]
+        [Authorize(Roles = "Driver")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -42,6 +45,8 @@ namespace FoodDelivery.Controllers{
         }
 
         [HttpGet("{id}")] 
+        [Authorize(Roles = "RestaurantOwner")]
+        [Authorize(Roles = "Driver")]
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -62,51 +67,6 @@ namespace FoodDelivery.Controllers{
             }
             catch (Exception ex)
             { 
-                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
-            }
-        }
-        [HttpPost]
-        public IActionResult AddDelivery([FromBody] DeliveryModel model)
-        {
-            try
-            {
-                ResponseType type = ResponseType.Success;
-              
-                 Delivery deliveryRow = new Delivery(){
-                    Id = model.id,
-                    OrderId = model.orderid,
-                    DriverId = model.driverid
-                };
-                 _fd_DataContext.Deliveries.Add(deliveryRow);
-                 _fd_DataContext.SaveChanges();
-            
-                return Ok(ResponseHandler.GetAppResponse(type, model));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ResponseHandler.GetExceptionResponse(ex));
-            }
-        }
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            try
-            {
-                ResponseType type = ResponseType.Success;
-                var delivery = _fd_DataContext.Deliveries.Where(d => d.Id.Equals(id)).FirstOrDefault();
-            if (delivery != null)
-            {
-                _fd_DataContext.Deliveries.Remove(delivery);
-                _fd_DataContext.SaveChanges();
-                return Ok(ResponseHandler.GetAppResponse(type, "Delete Successfully"));
-            }
-            else
-            {
-                throw new CustomException("customer already exists");
-            }
-            }
-            catch (Exception ex)
-            {
                 return BadRequest(ResponseHandler.GetExceptionResponse(ex));
             }
         }

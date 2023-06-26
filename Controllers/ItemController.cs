@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using FoodDelivery.EntityFramework.Entities;
 using FoodDelivery.EntityFramework;
 using FoodDelivery.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodDelivery.Controllers{
     [Route("api/[controller]")]
@@ -16,6 +17,7 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
+        [Authorize(Roles = "Customer,RestaurantOwner")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -43,6 +45,7 @@ namespace FoodDelivery.Controllers{
         }
 
         [HttpGet("{id}")] 
+        [Authorize(Roles = "RestaurantOwner")]
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
@@ -68,6 +71,7 @@ namespace FoodDelivery.Controllers{
             }
         }
         [HttpPost]
+        [Authorize(Roles = "RestaurantOwner")]
         public IActionResult AddItem([FromBody] ItemModel model)
         {
             try
@@ -91,6 +95,7 @@ namespace FoodDelivery.Controllers{
             }
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "RestaurantOwner")]
         public IActionResult Delete(int id)
         {
             try
