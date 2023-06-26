@@ -18,6 +18,7 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
+        [Authorize(Roles = "RestaurantOwner")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;

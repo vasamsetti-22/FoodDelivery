@@ -17,8 +17,7 @@ namespace FoodDelivery.Controllers{
         
 
         [HttpGet]
-        [Authorize(Roles = "RestaurantOwner")]
-        [Authorize(Roles = "Driver")]
+        [Authorize(Roles = "RestaurantOwner,Driver")]
         public IActionResult Get()
         {
             ResponseType type = ResponseType.Success;
@@ -45,8 +44,7 @@ namespace FoodDelivery.Controllers{
         }
 
         [HttpGet("{id}")] 
-        [Authorize(Roles = "RestaurantOwner")]
-        [Authorize(Roles = "Driver")]
+        [Authorize(Roles = "RestaurantOwner,Driver")]
         public IActionResult Get(int id)
         {
             ResponseType type = ResponseType.Success;
