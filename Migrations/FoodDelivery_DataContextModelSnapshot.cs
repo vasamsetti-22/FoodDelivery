@@ -28,12 +28,10 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
                     b.Property<string>("PostCode")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("postcode");
 
@@ -49,12 +47,10 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("DriverId")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("driverid");
 
                     b.Property<string>("OrderId")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("orderid");
 
@@ -70,12 +66,10 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
                     b.Property<string>("PostCode")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("postcode");
 
@@ -91,7 +85,6 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
@@ -100,7 +93,6 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("price");
 
                     b.Property<string>("RestaurantId")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("restaurantid");
 
@@ -114,6 +106,10 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text")
                         .HasColumnName("id");
+
+                    b.Property<double>("CustomerId")
+                        .HasColumnType("double precision")
+                        .HasColumnName("customerid");
 
                     b.Property<double>("Price")
                         .HasColumnType("double precision")
@@ -131,12 +127,10 @@ namespace FoodDelivery.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("name");
 
                     b.Property<string>("PostCode")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("postcode");
 

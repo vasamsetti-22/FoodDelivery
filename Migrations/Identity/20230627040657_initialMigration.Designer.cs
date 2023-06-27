@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodDelivery.Migrations.Identity
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20230616055707_initialMigration")]
+    [Migration("20230627040657_initialMigration")]
     partial class initialMigration
     {
         /// <inheritdoc />

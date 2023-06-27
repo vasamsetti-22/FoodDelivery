@@ -15,8 +15,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    postcode = table.Column<string>(type: "text", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: true),
+                    postcode = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -28,8 +28,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    orderid = table.Column<string>(type: "text", nullable: false),
-                    driverid = table.Column<string>(type: "text", nullable: false)
+                    orderid = table.Column<string>(type: "text", nullable: true),
+                    driverid = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,8 +41,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    postcode = table.Column<string>(type: "text", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: true),
+                    postcode = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -54,9 +54,9 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
+                    name = table.Column<string>(type: "text", nullable: true),
                     price = table.Column<double>(type: "double precision", nullable: false),
-                    restaurantid = table.Column<string>(type: "text", nullable: false)
+                    restaurantid = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,7 +68,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    price = table.Column<double>(type: "double precision", nullable: false)
+                    price = table.Column<double>(type: "double precision", nullable: false),
+                    customerid = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,8 +81,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     id = table.Column<string>(type: "text", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    postcode = table.Column<string>(type: "text", nullable: false)
+                    name = table.Column<string>(type: "text", nullable: true),
+                    postcode = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -25,14 +25,14 @@ public class AuthController : ControllerBase
     {
         IdentityResult roleResult;
 
-        // foreach (var roleName in  Enum.GetValues(typeof(RegistrationType)))
-        // {
-        //     var roleExist = await _roleManager.RoleExistsAsync(roleName.ToString());
-        //     if (!roleExist)
-        //     {
-        //         roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName.ToString()));
-        //     }
-        // }
+        foreach (var roleName in  Enum.GetValues(typeof(RegistrationType)))
+        {
+            var roleExist = await _roleManager.RoleExistsAsync(roleName.ToString());
+            if (!roleExist)
+            {
+                roleResult = await _roleManager.CreateAsync(new IdentityRole(roleName.ToString()));
+            }
+        }
         
         string role = ((RegistrationType)request.RegistrationType).ToString();
         
