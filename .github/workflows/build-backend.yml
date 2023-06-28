@@ -4,11 +4,10 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '6.0.408' ]
+        dotnet-version: ["6.0.408"]
 
     steps:
       - uses: actions/checkout@v3
